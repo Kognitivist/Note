@@ -1,9 +1,12 @@
 package com.example.note.screens
 
+import android.app.Application
 import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -11,21 +14,32 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle.Companion.Italic
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.note.MainViewModel
+import com.example.note.MainViewModelFactory
+import com.example.note.model.Note
 import com.example.note.navigation.NavRoute
 
 
 @Composable
 fun main (navController: NavHostController){
+    val context = LocalContext.current
+    val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+
+    val notes = mViewModel.readTest.observeAsState(listOf()).value
+
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(bottom = 10.dp, top = 8.dp)
@@ -37,10 +51,15 @@ fun main (navController: NavHostController){
                 .padding(bottom = 10.dp, top = 8.dp)
             , horizontalAlignment = Alignment.CenterHorizontally
             , verticalArrangement = Arrangement.Top) {
-            noteItem(title = "Note 1", subtitle = "text", navController = navController)
-            noteItem(title = "Note 2", subtitle = "text", navController = navController)
-            noteItem(title = "Note 3", subtitle = "text", navController = navController)
-            noteItem(title = "Note 4", subtitle = "text", navController = navController)
+            LazyColumn{
+                items(notes) {
+                    note -> noteItem(note = note, navController = navController )
+                }
+            }
+//            noteItem(title = "Note 1", subtitle = "text", navController = navController)
+//            noteItem(title = "Note 2", subtitle = "text", navController = navController)
+//            noteItem(title = "Note 3", subtitle = "text", navController = navController)
+//            noteItem(title = "Note 4", subtitle = "text", navController = navController)
         }
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -61,7 +80,7 @@ fun prevMainScreen(){
 }
 
 @Composable
-fun noteItem(title:String, subtitle:String, navController: NavHostController){
+fun noteItem(note: Note, navController: NavHostController){
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(8.dp)) {
@@ -74,9 +93,9 @@ fun noteItem(title:String, subtitle:String, navController: NavHostController){
             Column(modifier = Modifier
                 .fillMaxSize()
                 , horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = title, color = Color.White, fontSize = 25.sp
+                Text(text = note.title, color = Color.White, fontSize = 25.sp
                     ,fontStyle = Italic )
-                Text(text = subtitle, color = Color.White)
+                Text(text = note.subTitle, color = Color.White)
             }
         }
     }
