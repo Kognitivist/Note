@@ -33,8 +33,9 @@ fun start (navController: NavHostController){
         Text(text = "What will be used?")
         Button(
             onClick = {
-                mViewModel.initDataBase(TYPE_ROOM)
-                navController.navigate(route = NavRoute.Main.route)
+                mViewModel.initDataBase(TYPE_ROOM) {
+                    navController.navigate(route = NavRoute.Main.route)
+                }
             },
             modifier = Modifier
                 .width(200.dp)
@@ -44,8 +45,9 @@ fun start (navController: NavHostController){
         }
         Button(
             onClick = {
-                mViewModel.initDataBase(TYPE_FIREBASE)
-                navController.navigate(route = NavRoute.Main.route)
+                mViewModel.initDataBase(TYPE_FIREBASE){
+                    navController.navigate(route = NavRoute.Main.route)
+                }
             },
             modifier = Modifier
                 .width(200.dp)

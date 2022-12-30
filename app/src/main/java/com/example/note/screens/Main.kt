@@ -38,7 +38,6 @@ fun main (navController: NavHostController){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
 
-    val notes = mViewModel.readTest.observeAsState(listOf()).value
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -51,11 +50,11 @@ fun main (navController: NavHostController){
                 .padding(bottom = 10.dp, top = 8.dp)
             , horizontalAlignment = Alignment.CenterHorizontally
             , verticalArrangement = Arrangement.Top) {
-            LazyColumn{
-                items(notes) {
-                    note -> noteItem(note = note, navController = navController )
-                }
-            }
+//            LazyColumn{
+//                items(notes) {
+//                    note -> noteItem(note = note, navController = navController )
+//                }
+//            }
 //            noteItem(title = "Note 1", subtitle = "text", navController = navController)
 //            noteItem(title = "Note 2", subtitle = "text", navController = navController)
 //            noteItem(title = "Note 3", subtitle = "text", navController = navController)
