@@ -3,7 +3,6 @@ package com.example.note.screens
 import android.app.Application
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +21,7 @@ import com.example.note.utils.TYPE_ROOM
 
 
 @Composable
-fun start (navController: NavHostController){
+fun start (navController: NavHostController, viewModel: MainViewModel){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
 
@@ -61,5 +60,7 @@ fun start (navController: NavHostController){
 @Preview(showBackground = true)
 @Composable
 fun prevStartScreen(){
-    start(navController = rememberNavController())
+    val context = LocalContext.current
+    val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+    start(navController = rememberNavController(), viewModel = mViewModel)
 }
