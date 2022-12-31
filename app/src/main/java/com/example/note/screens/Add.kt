@@ -23,6 +23,10 @@ import com.example.note.MainViewModel
 import com.example.note.MainViewModelFactory
 import com.example.note.model.Note
 import com.example.note.navigation.NavRoute
+import com.example.note.utils.Constants.Keys.ADD_NEW_NOTE
+import com.example.note.utils.Constants.Keys.ADD_NOTE
+import com.example.note.utils.Constants.Keys.NOTE_SUBTITLE
+import com.example.note.utils.Constants.Keys.NOTE_TITLE
 
 
 @Composable
@@ -33,13 +37,13 @@ fun add (navController: NavHostController, viewModel: MainViewModel){
     Column(modifier = Modifier.fillMaxSize()
         , horizontalAlignment = Alignment.CenterHorizontally
         , verticalArrangement = Arrangement.Center) {
-        Text(text = "Add new Note", modifier = Modifier.padding(vertical = 10.dp))
+        Text(text = ADD_NEW_NOTE, modifier = Modifier.padding(vertical = 10.dp))
         OutlinedTextField(value = title.value,
             onValueChange = {
                 title.value = it
                 isButtonEnabled.value = title.value.isNotEmpty() && subTitle.value.isNotEmpty()
             },
-            label = { Text(text = "Note Title")},
+            label = { Text(text = NOTE_TITLE)},
             isError = title.value.isEmpty())
 
         OutlinedTextField(value = subTitle.value,
@@ -47,7 +51,7 @@ fun add (navController: NavHostController, viewModel: MainViewModel){
                 subTitle.value = it
                 isButtonEnabled.value = title.value.isNotEmpty() && subTitle.value.isNotEmpty()
             },
-            label = { Text(text = "Note SubTitle")},
+            label = { Text(text = NOTE_SUBTITLE)},
             isError = subTitle.value.isEmpty())
         Button(modifier = Modifier.padding(top = 16.dp),
             enabled = isButtonEnabled.value,
@@ -58,7 +62,7 @@ fun add (navController: NavHostController, viewModel: MainViewModel){
 
             })
         {
-            Text(text = "Add note")
+            Text(text = ADD_NOTE)
         }
     }
 }

@@ -16,6 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.note.MainViewModel
 import com.example.note.MainViewModelFactory
 import com.example.note.navigation.NavRoute
+import com.example.note.utils.Constants.Keys.FIREBASE_DATABASE
+import com.example.note.utils.Constants.Keys.ROOM_DATABASE
+import com.example.note.utils.Constants.Keys.WHAT_WILL_BE_USED
 import com.example.note.utils.TYPE_FIREBASE
 import com.example.note.utils.TYPE_ROOM
 
@@ -29,7 +32,7 @@ fun start (navController: NavHostController, viewModel: MainViewModel){
     Column(modifier = Modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center) {
-        Text(text = "What will be used?")
+        Text(text = WHAT_WILL_BE_USED)
         Button(
             onClick = {
                 mViewModel.initDataBase(TYPE_ROOM) {
@@ -40,7 +43,7 @@ fun start (navController: NavHostController, viewModel: MainViewModel){
                 .width(200.dp)
                 .padding(vertical = 8.dp)
         ) {
-            Text(text = "Room database")
+            Text(text = ROOM_DATABASE)
         }
         Button(
             onClick = {
@@ -52,7 +55,7 @@ fun start (navController: NavHostController, viewModel: MainViewModel){
                 .width(200.dp)
                 .padding(vertical = 8.dp)
         ) {
-            Text(text = "Firebase database")
+            Text(text = FIREBASE_DATABASE)
         }
     }
 

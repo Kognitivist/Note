@@ -80,7 +80,7 @@ fun noteItem(note: Note, navController: NavHostController){
         Card(modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .clickable { navController.navigate(route = NavRoute.Note.route) }
+            .clickable { navController.navigate(route = NavRoute.Note.route + "/${note.id}") }
             ,backgroundColor = Color.Blue)
         {
             Column(modifier = Modifier
