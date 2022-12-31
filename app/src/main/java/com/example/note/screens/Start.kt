@@ -24,7 +24,7 @@ import com.example.note.utils.TYPE_ROOM
 
 
 @Composable
-fun start (navController: NavHostController, viewModel: MainViewModel){
+fun Start (navController: NavHostController, viewModel: MainViewModel){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
 
@@ -62,8 +62,8 @@ fun start (navController: NavHostController, viewModel: MainViewModel){
 }
 @Preview(showBackground = true)
 @Composable
-fun prevStartScreen(){
+fun PrevStartScreen(){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-    start(navController = rememberNavController(), viewModel = mViewModel)
+    Start(navController = rememberNavController(), viewModel = mViewModel)
 }

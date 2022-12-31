@@ -30,10 +30,10 @@ import com.example.note.utils.Constants.Keys.NOTE_TITLE
 
 
 @Composable
-fun add (navController: NavHostController, viewModel: MainViewModel){
+fun Add (navController: NavHostController, viewModel: MainViewModel){
     val title = remember { mutableStateOf("") }
     val subTitle = remember { mutableStateOf("") }
-    var isButtonEnabled = remember { mutableStateOf(false) }
+    val isButtonEnabled = remember { mutableStateOf(false) }
     Column(modifier = Modifier.fillMaxSize()
         , horizontalAlignment = Alignment.CenterHorizontally
         , verticalArrangement = Arrangement.Center) {
@@ -71,8 +71,8 @@ fun add (navController: NavHostController, viewModel: MainViewModel){
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun prevAddScreen(){
+fun PrevAddScreen(){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-    add(navController = rememberNavController(), viewModel = mViewModel)
+    Add(navController = rememberNavController(), viewModel = mViewModel)
 }

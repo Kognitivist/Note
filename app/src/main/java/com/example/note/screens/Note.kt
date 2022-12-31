@@ -145,7 +145,7 @@ fun Note (navController: NavHostController, viewModel: MainViewModel, noteId: St
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun prevNoteScreen(){
+fun PrevNoteScreen(){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
     Note(

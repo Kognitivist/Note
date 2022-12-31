@@ -31,7 +31,7 @@ import com.example.note.navigation.NavRoute
 
 
 @Composable
-fun main (navController: NavHostController, viewModel: MainViewModel){
+fun Main (navController: NavHostController, viewModel: MainViewModel){
 
     val notes = viewModel.readAllNotes().observeAsState(listOf()).value
 
@@ -48,7 +48,7 @@ fun main (navController: NavHostController, viewModel: MainViewModel){
             , verticalArrangement = Arrangement.Top) {
             LazyColumn{
                 items(notes) {
-                    note -> noteItem(note = note, navController = navController )
+                    note -> NoteItem(note = note, navController = navController )
                 }
             }
         }
@@ -66,14 +66,14 @@ fun main (navController: NavHostController, viewModel: MainViewModel){
 }
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun prevMainScreen(){
+fun PrevMainScreen(){
     val context = LocalContext.current
     val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-    main(navController = rememberNavController(), viewModel = mViewModel)
+    Main(navController = rememberNavController(), viewModel = mViewModel)
 }
 
 @Composable
-fun noteItem(note: Note, navController: NavHostController){
+fun NoteItem(note: Note, navController: NavHostController){
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(8.dp)) {

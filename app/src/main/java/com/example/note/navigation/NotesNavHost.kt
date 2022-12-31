@@ -5,10 +5,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.note.MainViewModel
-import com.example.note.screens.add
-import com.example.note.screens.main
+import com.example.note.screens.Add
+import com.example.note.screens.Main
 import com.example.note.screens.Note
-import com.example.note.screens.start
+import com.example.note.screens.Start
 import com.example.note.utils.Constants.Keys.ID
 
 import com.example.note.utils.Constants.Screens.ADD_SCREEN
@@ -28,9 +28,9 @@ fun NotesNavHost(mViewModel: MainViewModel){
     val navController = rememberNavController()
     
     NavHost(navController = navController, startDestination = NavRoute.Start.route){
-        composable(NavRoute.Start.route){ start(navController, viewModel = mViewModel) }
-        composable(NavRoute.Main.route){ main(navController, viewModel = mViewModel) }
-        composable(NavRoute.Add.route){ add(navController, viewModel = mViewModel) }
+        composable(NavRoute.Start.route){ Start(navController, viewModel = mViewModel) }
+        composable(NavRoute.Main.route){ Main(navController, viewModel = mViewModel) }
+        composable(NavRoute.Add.route){ Add(navController, viewModel = mViewModel) }
         composable(NavRoute.Note.route + "/{$ID}"){ backStackEntry ->
             Note(navController, viewModel = mViewModel, noteId = backStackEntry.arguments?.getString(ID)) }
     }
