@@ -65,6 +65,7 @@ fun Start (navController: NavHostController, viewModel: MainViewModel){
                             LOGIN = login.value
                             PASSWORD = password.value
                             viewModel.initDataBase(TYPE_FIREBASE){
+                                navController.navigate(route = NavRoute.Main.route)
                             }
                         },
                         enabled = login.value.isNotEmpty() && password.value.isNotEmpty()

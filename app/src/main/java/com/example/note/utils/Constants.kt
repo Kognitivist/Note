@@ -5,6 +5,7 @@ import com.example.note.database.DataBaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+const val FIREBASE_ID = "firebaseId"
 
 lateinit var REPOSITORY: DataBaseRepository
 lateinit var LOGIN: String
@@ -15,8 +16,8 @@ object Constants {
         const val NOTE_DATABASE = "note_database"
         const val NOTES_TABLE = "notes_table"
         const val ADD_NEW_NOTE = "Add new Note"
-        const val NOTE_TITLE = "Note Title"
-        const val NOTE_SUBTITLE =  "Note SubTitle"
+        const val NOTE_TITLE = "title"
+        const val NOTE_SUBTITLE =  "subTitle"
         const val ADD_NOTE = "Add Note"
         const val WHAT_WILL_BE_USED = "What will be used?"
         const val ROOM_DATABASE = "Room database"
