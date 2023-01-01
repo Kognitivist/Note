@@ -3,6 +3,7 @@ package com.example.note
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.note.database.firebase.FirebaseRepository
 import com.example.note.database.room.AppRoomDatabase
 import com.example.note.database.room.repository.RoomRepository
 import com.example.note.model.Note
@@ -17,12 +18,19 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
 
 
     fun initDataBase(type: String, onSuccess: () -> Unit) {
-        Log.d("Mylog", "MainViewModel initDataBase with type: $type")
+        Log.d("initDataBase","type:${type}")
         when(type){
             TYPE_ROOM -> {
                 val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
                 onSuccess()
+            }
+            TYPE_FIREBASE -> {
+                REPOSITORY = FirebaseRepository()
+                REPOSITORY.connectToDataBase(
+                    {onSuccess()},
+                    {Log.d("mylog","Error: ${it}")}
+                )
             }
         }
     }
