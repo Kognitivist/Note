@@ -1,5 +1,8 @@
 package com.example.note.utils
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.example.note.database.DataBaseRepository
 
 const val TYPE_DATABASE = "type_database"
@@ -10,7 +13,7 @@ const val FIREBASE_ID = "firebaseId"
 lateinit var REPOSITORY: DataBaseRepository
 lateinit var LOGIN: String
 lateinit var PASSWORD: String
-lateinit var DB_TYPE: String
+var DB_TYPE by mutableStateOf("")
 
 object Constants {
     object Keys{

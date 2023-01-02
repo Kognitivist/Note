@@ -7,9 +7,7 @@ import com.example.note.database.firebase.FirebaseRepository
 import com.example.note.database.room.AppRoomDatabase
 import com.example.note.database.room.repository.RoomRepository
 import com.example.note.model.Note
-import com.example.note.utils.REPOSITORY
-import com.example.note.utils.TYPE_FIREBASE
-import com.example.note.utils.TYPE_ROOM
+import com.example.note.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -62,6 +60,18 @@ class MainViewModel (application: Application): AndroidViewModel(application) {
                 }
             }
         }
+    }
+    fun signOut(onSuccess: () -> Unit){
+        when(DB_TYPE){
+            TYPE_FIREBASE,
+            TYPE_ROOM -> {
+                REPOSITORY.signOut()
+                DB_TYPE = Constants.Keys.EMPTY
+                onSuccess()
+            }
+            else -> {}
+        }
+
     }
 }
 

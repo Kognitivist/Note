@@ -25,5 +25,5 @@ class RoomRepository (private val noteRoomDao: NoteRoomDao) : DataBaseRepository
         onSuccess()
     }
 
-
+    override fun signOut() { }
 }
