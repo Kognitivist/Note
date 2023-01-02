@@ -28,6 +28,10 @@ import com.example.note.MainViewModel
 import com.example.note.MainViewModelFactory
 import com.example.note.model.Note
 import com.example.note.navigation.NavRoute
+import com.example.note.utils.Constants
+import com.example.note.utils.DB_TYPE
+import com.example.note.utils.TYPE_FIREBASE
+import com.example.note.utils.TYPE_ROOM
 
 
 @Composable
@@ -74,13 +78,18 @@ fun PrevMainScreen(){
 
 @Composable
 fun NoteItem(note: Note, navController: NavHostController){
+    val noteId = when(DB_TYPE){
+        TYPE_FIREBASE -> note.firebaseId
+        TYPE_ROOM -> note.id
+        else -> Constants.Keys.EMPTY
+    }
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(8.dp)) {
         Card(modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Max)
-            .clickable { navController.navigate(route = NavRoute.Note.route + "/${note.id}") }
+            .clickable { navController.navigate(route = NavRoute.Note.route + "/${noteId}") }
             ,backgroundColor = Color.Blue)
         {
             Column(modifier = Modifier

@@ -31,6 +31,9 @@ import com.example.note.utils.Constants.Keys.NONE
 import com.example.note.utils.Constants.Keys.NOTE_SUBTITLE
 import com.example.note.utils.Constants.Keys.NOTE_TITLE
 import com.example.note.utils.Constants.Keys.UPDATE
+import com.example.note.utils.DB_TYPE
+import com.example.note.utils.TYPE_FIREBASE
+import com.example.note.utils.TYPE_ROOM
 import kotlinx.coroutines.launch
 
 
@@ -38,7 +41,13 @@ import kotlinx.coroutines.launch
 @Composable
 fun Note (navController: NavHostController, viewModel: MainViewModel, noteId: String?){
     val notes = viewModel.readAllNotes().observeAsState(listOf()).value
-    val note = notes.firstOrNull{it.id == noteId?.toInt()} ?: com.example.note.model.Note(title = NONE, subTitle = NONE)
+    val note = when(DB_TYPE){
+        TYPE_ROOM -> notes.firstOrNull{it.id == noteId?.toInt()} ?: com.example.note.model.Note()
+        TYPE_FIREBASE -> notes.firstOrNull{it.firebaseId == noteId} ?: com.example.note.model.Note()
+        else -> com.example.note.model.Note()
+    }
+
+
     val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
     val title = remember { mutableStateOf(EMPTY) }
@@ -74,7 +83,8 @@ fun Note (navController: NavHostController, viewModel: MainViewModel, noteId: St
                                 com.example.note.model.Note(
                                     id = note.id,
                                     title = title.value,
-                                    subTitle = subtitle.value)
+                                    subTitle = subtitle.value,
+                                    firebaseId = note.firebaseId)
                             ){
                                 navController.navigate(NavRoute.Main.route)
                             }

@@ -65,6 +65,7 @@ fun Start (navController: NavHostController, viewModel: MainViewModel){
                             LOGIN = login.value
                             PASSWORD = password.value
                             viewModel.initDataBase(TYPE_FIREBASE){
+                                DB_TYPE = TYPE_FIREBASE
                                 navController.navigate(route = NavRoute.Main.route)
                             }
                         },
@@ -83,6 +84,7 @@ fun Start (navController: NavHostController, viewModel: MainViewModel){
             Button(
                 onClick = {
                     viewModel.initDataBase(TYPE_ROOM) {
+                        DB_TYPE = TYPE_ROOM
                         navController.navigate(route = NavRoute.Main.route)
                     }
                 },
