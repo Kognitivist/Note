@@ -34,7 +34,4 @@ fun NotesNavHost(mViewModel: MainViewModel, navController: NavHostController){
         composable(NavRoute.Note.route + "/{$ID}"){ backStackEntry ->
             Note(navController, viewModel = mViewModel, noteId = backStackEntry.arguments?.getString(ID)) }
     }
-
-
-
 }
