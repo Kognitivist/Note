@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = LocalContext.current
             val mViewModel: MainViewModel = viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+
             val navController = rememberNavController()
             Column {
                 TopAppBar(
